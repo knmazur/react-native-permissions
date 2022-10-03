@@ -16,9 +16,9 @@
     "permission",
     "authorization"
   ],
-  "types": "dist/typescript/index.d.ts",
-  "main": "dist/commonjs/index.js",
-  "module": "dist/module/index.js",
+  "types": "src/typescript/index.d.ts",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
   "files": [
     "/android",
     "!/android/build",

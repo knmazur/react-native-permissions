@@ -10,6 +10,11 @@ import {platformVersion, uniq} from './utils';
 
 const TIRAMISU_VERSION_CODE = 33;
 
+const isTurboModuleEnabled = global.__turboModuleProxy != null;
+const module = isTurboModuleEnabled ?
+  require("../codegen/NativePermissions").default :
+  NativeModules.RNPermissions;
+
 const NativeModule: {
   checkPermission: (permission: Permission) => Promise<PermissionStatus>;
   requestPermission: (permission: Permission) => Promise<PermissionStatus>;
@@ -23,7 +28,7 @@ const NativeModule: {
   requestMultiplePermissions: (
     permissions: Permission[],
   ) => Promise<Record<Permission, PermissionStatus>>;
-} = NativeModules.RNPermissions;
+} = module;
 
 async function openSettings(): Promise<void> {
   await NativeModule.openSettings();
